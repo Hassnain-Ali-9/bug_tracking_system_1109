@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_03_141258) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_150244) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -33,4 +33,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_141258) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_project", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_users_project_on_project_id"
+    t.index ["user_id"], name: "index_users_project_on_user_id"
+  end
+
+  add_foreign_key "users_project", "projects"
+  add_foreign_key "users_project", "users"
 end
