@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'rails_bootstrap_navbar'
 gem 'jquery-rails'
 gem 'devise'
+gem 'cancancan'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

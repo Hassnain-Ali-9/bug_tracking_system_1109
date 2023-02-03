@@ -3,12 +3,18 @@
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><%= link_to 'Home', root_path , class:'nav-link px-2 text-white'%></li>
-          <li><%= link_to 'Projects', '' , class:'nav-link px-2 text-white'%></li>
+          <li><%= link_to 'Projects', projects_path , class:'nav-link px-2 text-white'%></li>
           <li><a href="#" class="nav-link px-2 text-white">About</a></li>
         </ul>        
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Sign-In</button>
-          <button type="button" class="btn btn-warning">Sign In</button>
+
+           <%if user_signed_in? %>
+          <button type="button"> 
+             <%= link_to 'Sign Out' , destroy_user_session_path, class:"btn btn-warning", method: :delete %>
+             <% else %>
+             <%= link_to 'Sign In' , new_user_session_path, class:"btn btn-warning" %>
+             <% end %>
+          </button>
         </div>
       </div>
     </div>

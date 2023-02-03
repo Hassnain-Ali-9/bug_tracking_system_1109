@@ -84,6 +84,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.4)
+    cancancan (3.4.0)
     capybara (3.38.0)
       addressable
       matrix
@@ -257,6 +258,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2.2)
   bootstrap-sass (~> 3.3.6)
+  cancancan
   capybara
   debug
   devise
