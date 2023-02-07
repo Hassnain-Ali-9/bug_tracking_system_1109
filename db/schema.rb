@@ -10,13 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_03_150244) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_07_111139) do
+  create_table "bugs", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.datetime "deadline"
+    t.string "screenshot"
+    t.string "type", null: false
+    t.string "status", null: false
+    t.integer "project_id", null: false
+    t.integer "creator_id", null: false
+    t.integer "solver_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_bugs_on_title", unique: true
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "userprojects", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_userprojects_on_project_id"
+    t.index ["user_id"], name: "index_userprojects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,13 +57,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_150244) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "users_project", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_users_project_on_project_id"
-    t.index ["user_id"], name: "index_users_project_on_user_id"
-  end
-
-  add_foreign_key "users_project", "projects"
-  add_foreign_key "users_project", "users"
+  add_foreign_key "bugs", "projects"
+  add_foreign_key "bugs", "users", column: "creator_id"
+  add_foreign_key "bugs", "users", column: "solver_id"
+  add_foreign_key "userprojects", "projects"
+  add_foreign_key "userprojects", "users"
 end

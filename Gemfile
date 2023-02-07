@@ -11,6 +11,8 @@ gem 'rails_bootstrap_navbar'
 gem 'jquery-rails'
 gem 'devise'
 gem 'cancancan'
+gem 'carrierwave'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
