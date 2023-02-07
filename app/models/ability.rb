@@ -8,14 +8,14 @@ class Ability
     #
     #   return unless user.present?
     #   can :read, :all
-       return unless user.manager?
-       can :manage, :all
+       #return unless user.manager?
+       #can :manage, :all
 
-       return unless user.developer?
-       can :read, Project
+       #return unless user.developer?
+       #can :read, Project
 
-       return unless user.QA?
-       can :read, Project
+       #return unless user.QA?
+       #can :read, Project
 
     #
     # The first argument to `can` is the action you are giving the user
