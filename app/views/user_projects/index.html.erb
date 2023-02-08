@@ -3,9 +3,11 @@
   <div type="button">
     <%= link_to "Back", project_path(@project), class: "btn btn-dark"%>
   </div>
+  <% if current_user.user_type == 'manager' %>
     <div type="button" >
       <%= link_to '  Assign  ', new_project_user_project_path(@project),class: "btn btn-dark" %>
     </div>
+  <%end %>
 </div>
 <br>
 <div class="container">
@@ -13,11 +15,15 @@
   <table class="table table-bordered table-hover table-condensed">
     <thead>
       <tr class="success">
-        <th>Qa Name</th>
-        <th>Qa Id</th>
+        <th>Name</th>
+        <th>Id</th>
         <th>Project Name</th>
         <th>Role</th>
-        <th>Remove Assigning</th>
+      <% if current_user.user_type == 'manager' %>
+
+        <th>Assigning</th>
+        <%end%>
+
       </tr>
     </thead>
     <tbody>
@@ -29,7 +35,10 @@
         <%p1=Project.find(assigning.project_id) %>
         <td><%= p1.name%></td>
         <td><%= u.user_type%></td>
+        <% if current_user.user_type == 'manager' %>
+
         <td><%= link_to "Remove Assigning", project_user_project_path(@project,assigning), data: { turbo_method: :delete,turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
+        <%end%>
       </tr>
       <% end %>
     </tbody>
