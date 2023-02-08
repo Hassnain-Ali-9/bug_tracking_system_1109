@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
-  resources :projects
-  resources :bugs
+   resources :projects do
+    resources :bugs
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
