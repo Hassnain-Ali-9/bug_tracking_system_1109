@@ -9,14 +9,13 @@ class CreateBugs < ActiveRecord::Migration[7.0]
       t.string :status, null: false
       t.integer :project_id, null: false
       t.integer :creator_id, null: false
-      t.integer :solver_id, null: false
+      t.integer :solver_id
 
       t.timestamps
 
     end
     add_index :bugs, :title, unique: true
     add_foreign_key :bugs, :users, column: :creator_id
-    add_foreign_key :bugs, :users, column: :solver_id
     add_foreign_key :bugs, :projects
     
   end

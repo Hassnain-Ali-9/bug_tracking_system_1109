@@ -1,0 +1,39 @@
+<br>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <div type="button">
+    <%= link_to "Back", project_path(@project), class: "btn btn-dark"%>
+  </div>
+    <div type="button" >
+      <%= link_to '  Assign  ', new_project_user_project_path(@project),class: "btn btn-dark" %>
+    </div>
+</div>
+<br>
+<div class="container">
+  <h2>Qas' List</h2>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr class="success">
+        <th>Qa Name</th>
+        <th>Qa Id</th>
+        <th>Project Name</th>
+        <th>Role</th>
+        <th>Remove Assigning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_projects.each do |assigning| %>
+      <tr class="info">
+        <%u=User.find(assigning.user_id) %> 
+        <td><%= u.name%></td>
+        <td><%= u.id%></td>
+        <%p1=Project.find(assigning.project_id) %>
+        <td><%= p1.name%></td>
+        <td><%= u.user_type%></td>
+        <td><%= link_to "Remove Assigning", project_user_project_path(@project,assigning), data: { turbo_method: :delete,turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>  
+
+

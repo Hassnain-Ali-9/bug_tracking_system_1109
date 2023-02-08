@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_064841) do
     t.string "status", null: false
     t.integer "project_id", null: false
     t.integer "creator_id", null: false
-    t.integer "solver_id", null: false
+    t.integer "solver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_bugs_on_title", unique: true
@@ -35,8 +35,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_064841) do
   end
 
   create_table "user_projects", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_user_projects_on_project_id"
+    t.index ["user_id"], name: "index_user_projects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,5 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_064841) do
 
   add_foreign_key "bugs", "projects"
   add_foreign_key "bugs", "users", column: "creator_id"
-  add_foreign_key "bugs", "users", column: "solver_id"
+  add_foreign_key "user_projects", "projects"
+  add_foreign_key "user_projects", "users"
 end

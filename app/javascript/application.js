@@ -6,3 +6,21 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import 'bootstrap'
+
+$('#box1').change(function() {
+    $('#div1').toggle(this.checked);
+});
+
+$('#box2').change(function() {
+    $('#div2').toggle(this.checked);
+});
+
+
+$("input[name='bug[bug_type]']").change(function() {
+    var obj = $("select[name='bug[bug_status]']")[0][3]
+    if(this.value==='bug'){
+      obj.text  = "resolved"
+    }
+    else{
+      obj.text = "completed"
+}})

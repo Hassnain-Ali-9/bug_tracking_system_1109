@@ -1,39 +1,60 @@
-<%= form_with (model: bug)  do |form| %>
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control' %>
+<hr>
+<%= form_for([@project, @bug], html: { multipart: true }) do |f| %>
+
+  <div class="field">
+    <div class="row">
+      <div class="col-md-4 offset-2">
+            <%= f.label :Tittle %><br>
+            <%= f.text_field :title %>
+      </div>
+   </div>
+  <div class="field">
+    <div class="row">
+      <div class="col-md-4 offset-2">
+        <%= f.label :Deadline %><br>
+        <%= f.datetime_select :deadline %>
+      </div>
   </div>
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: 'form-control' %>
+  <div class="field">
+    <div class="row">
+      <div class="col-md-4 offset-2">
+        <%= f.label :description %><br>
+        <%= f.text_field :description %>
+      </div>
   </div>
-  <div class="form-group">
-    <%= form.label :deadline %>
-    <%= form.datetime_field :deadline, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :screenshot %>
-    <%= form.file_field :screenshot, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :type %>
-    <%= form.select :type, Bug.types.keys, {}, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :status %>
-    <%= form.select :status, Bug.statuses.keys, {}, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :project_id %>
-    <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select a Project" }, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :creator_id %>
-    <%= form.collection_select :creator_id, User.all, :id, :full_name, { prompt: "Select a Creator" }, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :solver_id %>
-    <%= form.collection_select :solver_id, User.all, :id, :full_name, { prompt: "Select a Solver" }, class: 'form-control' %>
-  </div>
-  <%= form.submit "Create Bug", class: 'btn btn-primary' %>
+</div>
+<div class="field">
+  <div class="row">
+    <div class="col-md-4 offset-2">
+      <div class="form-group row"><br>
+      <%= label :type, 'Type '%>
+      <div >  
+        <%= f.radio_button :type, 'bug', :required => true %> 
+        <%= label :type, 'Bug' %>
+        <%= f.radio_button :type, 'feature' %> 
+        <%= label :type, 'feature' %>
+      </div>
+        <% bug_statuses = ['new', 'started', 'resolved'] %>
+        <%= f.label :status, 'Status:' %>
+        <%= f.select(:status, bug_statuses,{}, {:required=>true}) %>
+     </div>
+   </div>
+ </div>
+</div> 
+<div class="field">
+  <div class="row">
+    <div class="col-md-4 offset-2">
+      <%= f.label :Screenshot %><br>
+      <%= f.file_field :screenshot %>
+    </div>
+ </div>
+</div>
+<div class="field">
+  <div class="row">
+    <div class="col-md-4 offset-2">
+      <br>
+      <%= f.submit "Save", :class => 'btn btn-dark btn-sm' %>
+    </div>
+ </div>
+</div>
 <% end %>
