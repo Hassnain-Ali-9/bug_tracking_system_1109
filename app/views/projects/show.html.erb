@@ -5,7 +5,6 @@
 <div>
   <%= link_to "Edit this project", edit_project_path(@project) %> |
   <%= link_to "Back to projects", projects_path %> |
-  <%= link_to "Create Bugs", new_bug_path %>
-
+  <%= link_to "Create Bugs",  new_project_bug(@project) %>
   <%= button_to "Destroy this project", @project, method: :delete %>
 </div>
