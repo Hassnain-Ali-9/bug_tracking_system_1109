@@ -1,39 +1,41 @@
-<div id="<%= dom_id bug %>">
-  <p>
-    <strong>Title:</strong>
-    <%= bug.title %>
-  </p>
+<div id="<%= dom_id bug %>" class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">
+      <strong>Title:</strong>
+      <%= bug.title %>
+    </h5>
 
-  <p>
-    <strong>Description:</strong>
-    <%= bug.description %>
-  </p>
+    <p class="card-text">
+      <strong>Description:</strong>
+      <%= bug.description %>
+    </p>
 
-  <p>
-    <strong>Deadline:</strong>
-    <%= bug.deadline %>
-  </p>
+    <p class="card-text">
+      <strong>Deadline:</strong>
+      <%= bug.deadline %>
+    </p>
 
-  <p>
-    <strong>Type:</strong>
-    <%= bug.type %>
-  </p>
+    <p class="card-text">
+      <strong>Type:</strong>
+      <%= bug.type %>
+    </p>
 
-  <p>
-    <strong>Status:</strong>
-    <%= bug.status %>
-  </p>
+    <p class="card-text">
+      <strong>Status:</strong>
+      <%= bug.status %>
+    </p>
 
-  <% if bug.screenshot.present? %>
-  <p>
-    <strong>Screenshot:</strong>
-    <%= link_to image_tag(bug.screenshot.url, style: "width: 300px; height: 300px;"), bug.screenshot.url, target: "_blank" %>
-  </p>
-<% else %>
-  <p>
-    <strong>Screenshot:</strong>
-    This bug does not have a screenshot.
-  </p>
-<% end %>
+    <% if bug.screenshot.present? %>
+    <p class="card-text">
+      <strong>Screenshot:</strong>
+      <%= link_to image_tag(bug.screenshot.url, style: "width: 300px; height: 300px;"), bug.screenshot.url, target: "_blank", class: "card-img-top" %>
+    </p>
+  <% else %>
+    <p class="card-text">
+      <strong>Screenshot:</strong>
+      This bug does not have a screenshot.
+    </p>
+  <% end %>
 
+  </div>
 </div>

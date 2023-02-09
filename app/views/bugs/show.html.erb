@@ -1,13 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= button_to "Destroy this bug", project_bug_path(@bug), method: :delete %>
-  <%= link_to "Show this project", project %>
-</div>
-
 <%= render  @bug %>
-
-<div>
-  <%= link_to "Edit this bug", edit_project_bug_path(@bug) %> |
-  <%= link_to "Back to bugs", project_bugs_path %>
+<div class="d-flex justify-content-between">
+  <%= link_to "Edit this bug", edit_project_bug_path(@bug), class: "btn btn-primary" %>
+  <%= button_to "Destroy this bug", project_bug_path(@bug), method: :delete, class: "btn btn-danger" %>
+  <%= link_to "Back to bugs", project_bugs_path, class: "btn btn-secondary" %>
 </div>
