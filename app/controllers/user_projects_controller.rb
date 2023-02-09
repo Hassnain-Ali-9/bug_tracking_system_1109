@@ -1,6 +1,6 @@
 class UserProjectsController < ApplicationController
  before_action :find_user_project, only: [:show, :destroy]
-  before_action :get_project
+ before_action :get_project
 
   def index
 	 @user_projects = @project.user_projects
@@ -41,6 +41,5 @@ class UserProjectsController < ApplicationController
   def get_project
     @project = Project.find(params[:project_id])
   end
-
 
 end
