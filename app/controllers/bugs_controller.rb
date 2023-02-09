@@ -30,6 +30,8 @@ class BugsController < ApplicationController
   end
 
   def create
+      
+
     @bug = @project.bugs.new(bug_params)
     @bug.creator_id = current_user.id
 

@@ -9,6 +9,31 @@
     <%= bug.description %>
   </p>
 
-  
+  <p>
+    <strong>Deadline:</strong>
+    <%= bug.deadline %>
+  </p>
+
+  <p>
+    <strong>Type:</strong>
+    <%= bug.type %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= bug.status %>
+  </p>
+
+  <% if bug.screenshot.present? %>
+  <p>
+    <strong>Screenshot:</strong>
+    <%= link_to image_tag(bug.screenshot.url, style: "width: 300px; height: 300px;"), bug.screenshot.url, target: "_blank" %>
+  </p>
+<% else %>
+  <p>
+    <strong>Screenshot:</strong>
+    This bug does not have a screenshot.
+  </p>
+<% end %>
 
 </div>

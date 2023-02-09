@@ -30,8 +30,8 @@
       <%= label :type, 'Type '%>
       <div >  
         <%= f.radio_button :type, 'bug', :required => true %> 
-        <%= label :type, 'Bug' %>
-        <%= f.radio_button :type, 'feature' %> 
+        <%= label :type, 'bug' %>
+        <%= f.radio_button :type, 'feature'  %> 
         <%= label :type, 'feature' %>
       </div>
         <% bug_statuses = ['new', 'started', 'resolved'] %>

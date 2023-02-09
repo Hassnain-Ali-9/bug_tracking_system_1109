@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'cancancan'
 gem 'carrierwave'
+gem 'byebug'
+
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
