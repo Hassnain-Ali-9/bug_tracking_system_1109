@@ -1,15 +1,14 @@
 <%= form_for [@project,@user_project] do |f| %>
-<div class="field">
-    <div class="row">
-      <div class="col-md-4 offset-4">
-        <h3>Assign Project to Qas</h3>
-        <br>
-        <%= f.collection_select :user_id, User.where(user_type:2).order(:id),:id,:name, :prompt => "Select Qa"%>
-        <br>
-        <%= f.submit "Assign", :class => 'btn btn-dark btn-sm' %>
+  <div class="field">
+      <div class="row">
+        <div class="col-md-4 offset-4">
+          <h3>Assign Project to Qas</h3>
+          <br>
+          <%= f.collection_select :user_id, User.where(user_type:2).order(:id),:id,:name, :prompt => "Select Qa"%>
+          <br>
+          <%= f.submit "Assign", :class => 'btn btn-dark btn-sm' %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<br>
+  <br>
 <% end %>

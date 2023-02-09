@@ -19,26 +19,25 @@
         <th>Id</th>
         <th>Project Name</th>
         <th>Role</th>
-      <% if current_user.user_type == 'manager' %>
-
-        <th>Assigning</th>
+       <% if current_user.user_type == 'manager' %>
+         <th>Assigning</th>
         <%end%>
-
       </tr>
     </thead>
     <tbody>
       <% @user_projects.each do |assigning| %>
       <tr class="info">
-        <%u=User.find(assigning.user_id) %> 
-        <td><%= u.name%></td>
-        <td><%= u.id%></td>
+        <% u=User.find(assigning.user_id) %> 
+         <td><%= u.name%></td>
+         <td><%= u.id%></td>
         <%p1=Project.find(assigning.project_id) %>
-        <td><%= p1.name%></td>
-        <td><%= u.user_type%></td>
+         <td><%= p1.name%></td>
+         <td><%= u.user_type%></td>
         <% if current_user.user_type == 'manager' %>
-
-        <td><%= link_to "Remove Assigning", project_user_project_path(@project,assigning), data: { turbo_method: :delete,turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
-        <%end%>
+           <td><%= link_to "Remove Assigning", project_user_project_path(@project,assigning), data: { turbo_method: :delete,turbo_confirm: "Are you sure?"}, 
+             class: "btn btn-danger" %>           
+           </td>
+         <%end%>
       </tr>
       <% end %>
     </tbody>
