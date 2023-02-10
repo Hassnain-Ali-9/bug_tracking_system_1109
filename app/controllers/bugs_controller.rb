@@ -3,11 +3,12 @@ class BugsController < ApplicationController
   before_action :get_project
 
   def index
-    if current_user.user_type == 'manager'
-      @bugs = @project.bugs.all
-    else
+    if current_user.user_type =='developer'
+     @bugs = current_user.projects.flat_map(&:bugs)
+     else 
       @bugs = @project.bugs.all
     end
+
   end
 
   def new
@@ -40,10 +41,10 @@ class BugsController < ApplicationController
     end
   end
 
-  def assigned
-    @bugs = @project.bugs.where(:solver_id => current_user.id)
-    authorize @bugs
-  end
+  #def assigned
+   # @bugs = @project.bugs.where(:solver_id => current_user.id)
+    #authorize @bugs
+  #end
 
 
   def destroy
