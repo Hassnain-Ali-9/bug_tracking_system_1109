@@ -6,4 +6,8 @@
     <p><%= link_to "Show this project", project %></p>
   <% end %>
 </div>
-<%= link_to "New project", new_project_path %>
+<%if current_user&.user_type == "manager"%>
+  <%= link_to "New project", new_project_path %> 
+  <%else%>
+<%end%>
+

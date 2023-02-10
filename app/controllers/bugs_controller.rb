@@ -30,8 +30,6 @@ class BugsController < ApplicationController
   end
 
   def create
-      
-
     @bug = @project.bugs.new(bug_params)
     @bug.creator_id = current_user.id
 
@@ -43,7 +41,7 @@ class BugsController < ApplicationController
   end
 
   def assigned
-    @bugs = @project.bugs.where(:developer_id => current_user.id)
+    @bugs = @project.bugs.where(:solver_id => current_user.id)
     authorize @bugs
   end
 

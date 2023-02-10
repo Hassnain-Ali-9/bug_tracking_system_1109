@@ -2,14 +2,14 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    if current_user == 'manager'
+    if current_user.user_type == 'manager'
       @projects = Project.where(user_id: current_user.id)
-    elsif current_user == 'developer'
-      @projects = developer.find_by(id: current_user.id).projects
-    elsif current_user == 'QA'
-      @projects = QA.find_by(id: current_user.id).projects
+    elsif current_user.user_type == 'developer'
+      @projects = current_user.projects
+    elsif current_user.user_type == 'QA'
+      @projects = current_user.projects
     else
-      @projects=Project.all
+      
     end
   end
 

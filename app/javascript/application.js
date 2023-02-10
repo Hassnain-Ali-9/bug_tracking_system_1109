@@ -18,7 +18,7 @@ $('#box2').change(function() {
 
 $("input[name='bug[type]']").change(function() {
     var obj = $("select[name='bug[status]']")[0][3]
-    if(this.value==='bug'){
+    if(this.value=='bug'){
       obj.text  = "resolved"
     }
     else{
