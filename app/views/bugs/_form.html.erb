@@ -52,6 +52,14 @@
 <div class="field">
   <div class="row">
     <div class="col-md-4 offset-2">
+      <%= f.label :Solver %><br>
+      <%= f.collection_select :solver_id, @project.users.where(user_type: 1).order(:id),:id,:name, :prompt => "Select Solver"%>
+    </div>
+ </div>
+</div>
+<div class="field">
+  <div class="row">
+    <div class="col-md-4 offset-2">
       <br>
       <%= f.submit "Save", :class => 'btn btn-dark btn-sm' %>
     </div>

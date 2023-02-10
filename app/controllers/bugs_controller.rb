@@ -4,11 +4,10 @@ class BugsController < ApplicationController
 
   def index
     if current_user.user_type =='developer'
-     @bugs = current_user.projects.flat_map(&:bugs)
+     @bugs = current_user.projects.flat_map(&:bugs).select { |bug| bug.solver_id == current_user.id }
      else 
       @bugs = @project.bugs.all
     end
-
   end
 
   def new
@@ -41,30 +40,15 @@ class BugsController < ApplicationController
     end
   end
 
-  #def assigned
-   # @bugs = @project.bugs.where(:solver_id => current_user.id)
-    #authorize @bugs
-  #end
-
-
   def destroy
     @bug.destroy
     redirect_to project_bugs_path, status: :see_other
   end
 
-  # def assign
-  #   if @bug.update_attribute(:developer_id,current_user.id)
-  #     redirect_to project_bugs_path
-  #   else
-  #     redirect_to  project_bugs_path, status: :unprocessable_entity
-  #   end
-  #   authorize @bug
-  # end
-
   private
 
   def bug_params
-    params.require(:bug).permit(:title,:description,:deadline, :screenshot,:status,:type)
+    params.require(:bug).permit(:title,:description,:deadline, :screenshot,:status,:type,:solver_id)
   end
 
   def find_bug

@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, status: :see_other
     authorize @project
   end
+  
 
   private
 
