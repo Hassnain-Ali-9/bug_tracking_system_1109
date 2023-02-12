@@ -16,7 +16,7 @@ $('#box2').change(function() {
 });
 
 
-$("input[name='bug[type]']").change(function() {
+/*$("input[name='bug[type]']").change(function() {
     var obj = $("select[name='bug[status]']")[0][3]
     if(this.value=='bug'){
       obj.text  = "resolved"
@@ -24,3 +24,4 @@ $("input[name='bug[type]']").change(function() {
     else{
       obj.text = "completed"
 }})
+*/

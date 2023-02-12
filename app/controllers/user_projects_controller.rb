@@ -1,4 +1,5 @@
 class UserProjectsController < ApplicationController
+ load_and_authorize_resource
  before_action :find_user_project, only: [:show, :destroy]
  before_action :get_project
 

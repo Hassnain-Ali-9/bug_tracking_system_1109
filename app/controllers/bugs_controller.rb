@@ -1,4 +1,5 @@
 class BugsController < ApplicationController
+    load_and_authorize_resource
   before_action :find_bug, only: [:show, :destroy, :update, :edit, :assign]
   before_action :get_project
 
