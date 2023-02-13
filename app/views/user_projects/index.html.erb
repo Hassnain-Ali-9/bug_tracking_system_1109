@@ -9,9 +9,12 @@
     </div>
   <%end %>
 </div>
+
 <br>
+
 <div class="container">
   <h2>Project Assigning List</h2>
+
   <table class="table table-bordered table-hover table-condensed">
     <thead>
       <tr class="success">
@@ -27,15 +30,20 @@
     <tbody>
       <% @user_projects.each do |assigning| %>
       <tr class="info">
-        <% u=User.find(assigning.user_id) %> 
+        <% u=assigning.user %> 
          <td><%= u.name%></td>
          <td><%= u.id%></td>
-        <%p1=Project.find(assigning.project_id) %>
+
+        <%p1=assigning.project %>
          <td><%= p1.name%></td>
          <td><%= u.user_type%></td>
+         
         <% if current_user.user_type == 'manager' %>
-           <td><%= link_to "Remove Assigning", project_user_project_path(@project,assigning), data: { turbo_method: :delete,turbo_confirm: "Are you sure?"}, 
-             class: "btn btn-danger" %>           
+           <td>
+              <%= link_to "Remove Assigning",
+                project_user_project_path(@project,assigning),
+                data: { turbo_method: :delete,turbo_confirm: "Are you sure?"}, 
+                class: "btn btn-danger" %>           
            </td>
          <%end%>
       </tr>

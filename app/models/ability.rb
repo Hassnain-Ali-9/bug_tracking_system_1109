@@ -26,12 +26,10 @@ class Ability
   def developer_abilities(user)
     can :read, Project, id: user.projects.pluck(:id)
     can :read, Bug, project: { id: user.projects.pluck(:id) }
-    can :update, Bug do |bug|
-     puts "Bug: #{bug.inspect}"
-     puts "User: #{user.inspect}"
-     bug.solver_id == user.id && bug.changes.keys == ["status"]
-     end
-     #can :update, Bug, solver_id: user.id do |bug|
+    #can :update, Bug, do |bug|
+    #bug.solver_id == user.id && bug.changes.keys == ["status"]
+     #end
+     can :update, Bug, solver_id: user.id
      #bug.changes.keys == ["status"]
    #end
 

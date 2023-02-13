@@ -1,16 +1,12 @@
 class ProjectsController < ApplicationController
-  load_and_authorize_resource
-  before_action :find_project, only: [:show, :edit, :update, :destroy]
+   load_and_authorize_resource
+  before_action :find_project, except: [:index, :new, :create]
 
   def index
     if current_user.user_type == 'manager'
       @projects = Project.where(user_id: current_user.id)
-    elsif current_user.user_type == 'developer'
-      @projects = current_user.projects
-    elsif current_user.user_type == 'QA'
-      @projects = current_user.projects
-    else
-      
+     else
+     @projects = current_user.projects    
     end
   end
 
@@ -28,18 +24,17 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @project
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
 
   def edit
-    authorize @project
   end
 
   def update
     if @project.update(project_params)
       redirect_to @project
-    else
+     else
       render 'edit', status: :unprocessable_entity
     end
   end
@@ -47,7 +42,6 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     redirect_to projects_path, status: :see_other
-    authorize @project
   end
   
 

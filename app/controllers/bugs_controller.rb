@@ -1,12 +1,14 @@
 class BugsController < ApplicationController
     load_and_authorize_resource
-  before_action :find_bug, only: [:show, :destroy, :update, :edit, :assign]
+
+  before_action :find_bug, except: [:index, :new]
   before_action :get_project
 
   def index
-    if current_user.user_type =='developer'
-     @bugs = current_user.projects.flat_map(&:bugs).select { |bug| bug.solver_id == current_user.id }
-     else 
+    if current_user.user_type == 'developer'
+        @bugs = current_user.solved_bugs
+      #@bugs = current_user.projects.flat_map(&:bugs).select { |bug| bug.solver_id == current_user.id }
+    else 
       @bugs = @project.bugs.all
     end
   end
@@ -27,7 +29,6 @@ class BugsController < ApplicationController
     else
       render 'edit', status: :unprocessable_entity
     end
-
   end
 
   def create

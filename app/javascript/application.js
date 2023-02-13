@@ -7,13 +7,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import 'bootstrap'
 
-$('#box1').change(function() {
-    $('#div1').toggle(this.checked);
-});
 
-$('#box2').change(function() {
-    $('#div2').toggle(this.checked);
-});
 
 
 /*$("input[name='bug[type]']").change(function() {
