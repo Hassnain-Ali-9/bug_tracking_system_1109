@@ -4,65 +4,74 @@
   <div class="field">
     <div class="row">
       <div class="col-md-4 offset-2">
-            <%= f.label :Tittle %><br>
-            <%= f.text_field :title %>
+          <%= f.label :Tittle %><br>
+          <%= f.text_field :title %>
       </div>
    </div>
+ </div>
+
   <div class="field">
     <div class="row">
       <div class="col-md-4 offset-2">
         <%= f.label :Deadline %><br>
         <%= f.datetime_select :deadline %>
       </div>
-  </div>
+   </div>
+ </div>
+
   <div class="field">
     <div class="row">
       <div class="col-md-4 offset-2">
         <%= f.label :description %><br>
         <%= f.text_field :description %>
       </div>
-  </div>
-</div>
-<div class="field">
-  <div class="row">
-    <div class="col-md-4 offset-2">
-      <div class="form-group row"><br>
-      <%= label :type, 'Type '%>
-      <div >  
-        <%= f.radio_button :type, 'bug', :required => true %> 
-        <%= label :type, 'bug' %>
-        <%= f.radio_button :type, 'feature'  %> 
-        <%= label :type, 'feature' %>
+   </div>
+ </div>
+
+ <div class="field">
+    <div class="row">
+     <div class="col-md-4 offset-2">
+       <div class="form-group row"><br>
+         <%= label :type, 'Type '%>
+         <div >  
+           <%= f.radio_button :type, 'bug', :required => true %> 
+           <%= label :type, 'bug' %>
+           <%= f.radio_button :type, 'feature'  %> 
+           <%= label :type, 'feature' %>
+         </div>
+          <%= f.label :status, 'Status:' %>
+          <% bug_statuses = ['new', 'started', 'resolved'] %>
+          <%= f.select(:status, bug_statuses,{}, {:required=>true}) %>
+        </div>
       </div>
-        <% bug_statuses = ['new', 'started', 'resolved'] %>
-        <%= f.label :status, 'Status:' %>
-        <%= f.select(:status, bug_statuses,{}, {:required=>true}) %>
+    </div>
+  </div>
+
+ <div class="field">
+   <div class="row">
+     <div class="col-md-4 offset-2">
+       <%= f.label :Screenshot %><br>
+       <%= f.file_field :screenshot %>
+      </div>
+    </div>
+  </div>
+
+ <div class="field">
+   <div class="row">
+     <div class="col-md-4 offset-2">
+        <%= f.label :Solver %><br>
+        <%= f.collection_select :solver_id, @project.users.where(user_type: 1).order(:id),
+        :id,:name, :prompt => "Select Solver"%>
      </div>
    </div>
  </div>
-</div> 
-<div class="field">
-  <div class="row">
-    <div class="col-md-4 offset-2">
-      <%= f.label :Screenshot %><br>
-      <%= f.file_field :screenshot %>
-    </div>
+
+ <div class="field">
+   <div class="row">
+     <div class="col-md-4 offset-2">
+       <br>
+        <%= f.submit "Save", :class => 'btn btn-dark btn-sm' %>
+      </div>
+   </div>
  </div>
-</div>
-<div class="field">
-  <div class="row">
-    <div class="col-md-4 offset-2">
-      <%= f.label :Solver %><br>
-      <%= f.collection_select :solver_id, @project.users.where(user_type: 1).order(:id),:id,:name, :prompt => "Select Solver"%>
-    </div>
- </div>
-</div>
-<div class="field">
-  <div class="row">
-    <div class="col-md-4 offset-2">
-      <br>
-      <%= f.submit "Save", :class => 'btn btn-dark btn-sm' %>
-    </div>
- </div>
-</div>
 <% end %>

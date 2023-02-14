@@ -1,4 +1,5 @@
 <h1>Bugs</h1>
+
 <div class="d-flex justify-content-between align-items-center mb-3">
   <%if current_user.user_type =="QA"%>
   <%= link_to 'New Bug', new_project_bug_path, class: "btn btn-secondary" %>
@@ -28,7 +29,8 @@
         <td>
           <%= link_to 'Show', project_bug_path(@project,bug), class: "btn btn-info btn-lg" %>
           <%= link_to 'Edit', edit_project_bug_path(@project,bug), class: "btn btn-secondary btn-lg" %>
-          <%= link_to 'Destroy', project_bug_path(@project,bug), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+          <%= link_to 'Destroy', project_bug_path(@project,bug), method: :delete,
+          data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
         </td>
       </tr>
     <% end %>

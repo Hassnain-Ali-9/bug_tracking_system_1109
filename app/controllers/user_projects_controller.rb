@@ -14,29 +14,16 @@ class UserProjectsController < ApplicationController
   def show
   end
 
- # def create
-  #  @user_project = @project.user_projects.build(user_project_params) 
-   # if @user_project.save
-    #  redirect_to project_user_projects_path(@project)
-     #else
-      #render 'new'
-    #end
-  #end
-
-  
-
  def create
    user_ids = user_project_params[:user_id]
-   if user_ids.present?
-     user_ids.each do |user_id|
-      @user_project = @project.user_projects.find_or_create_by(user_id: user_id)
-      @user_project.save
+    if user_ids.present?
+      user_ids.each do |user_id|
+        @user_project = @project.user_projects.find_or_create_by(user_id: user_id)
+        @user_project.save
       end
     end
-     redirect_to project_user_projects_path(@project)
+    redirect_to project_user_projects_path(@project)
  end
-
-
 
   def destroy
 	  @user_project.destroy

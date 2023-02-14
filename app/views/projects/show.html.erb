@@ -5,11 +5,16 @@
     </div>
   <% end %>
   <%= render @project %>
-  <div class="d-flex justify-content-between mt-5">
-    <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-primary" %>
-    <%= link_to "Back to projects", projects_path, class: "btn btn-secondary" %>
-    <%= link_to "Bugs", project_bugs_path(@project), class: "btn btn-info" %>
-    <%= button_to "Destroy this project", @project, method: :delete, class: "btn btn-danger" %>
-    <%= link_to "Assign", project_user_projects_path(@project), class: "btn btn-warning" %>
+  <div class="d-flex justify-content-between mt-2">
+    <%if current_user&.user_type == "manager"%>
+      <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-primary" %>
+      <%= button_to "Destroy this project", @project, method: :delete, class: "btn btn-danger" %>
+      <%= link_to "Assign", project_user_projects_path(@project), class: "btn btn-warning" %>
+      <%= link_to "Back to projects", projects_path, class: "btn btn-secondary" %>
+      <%= link_to "Bugs", project_bugs_path(@project), class: "btn btn-info" %>
+     <%else%>
+      <%= link_to "Back", projects_path, class: "btn btn-secondary" %>
+      <%= link_to "Bugs", project_bugs_path(@project), class: "btn btn-info" %>
+    <%end%>
   </div>
 </div>
