@@ -40,7 +40,7 @@
            <%= label :type, 'feature' %>
          </div>
           <%= f.label :status, 'Status:' %>
-          <% bug_statuses = ['new', 'started', 'resolved'] %>
+          <% bug_statuses = ['new', 'started', 'resolved', 'completed'] %>
           <%= f.select(:status, bug_statuses,{}, {:required=>true}) %>
         </div>
       </div>

@@ -3,9 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum user_type: { manager: 0, developer: 1, QA: 2 }
-  
+
   # associations
-  has_many :projects
   has_many :user_projects
   has_many :projects, through: :user_projects
   has_many :created_bugs, class_name: 'Bug', foreign_key: :creator_id

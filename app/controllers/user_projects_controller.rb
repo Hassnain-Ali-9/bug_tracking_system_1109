@@ -1,10 +1,10 @@
 class UserProjectsController < ApplicationController
   load_and_authorize_resource
- before_action :find_user_project, only: [:show, :destroy]
- before_action :get_project
+  before_action :find_user_project, only: [:show, :destroy]
+  before_action :get_project
 
   def index
-	 @user_projects = @project.user_projects
+	  @user_projects = @project.user_projects
   end
 
   def new
@@ -14,16 +14,11 @@ class UserProjectsController < ApplicationController
   def show
   end
 
- def create
-   user_ids = user_project_params[:user_id]
-    if user_ids.present?
-      user_ids.each do |user_id|
-        @user_project = @project.user_projects.find_or_create_by(user_id: user_id)
-        @user_project.save
-      end
-    end
+  def create
+    user_ids = user_project_params[:user_id]
+    @project.users = User.where(id: user_ids)
     redirect_to project_user_projects_path(@project)
- end
+  end
 
   def destroy
 	  @user_project.destroy

@@ -26,7 +26,7 @@ class BugsController < ApplicationController
   def update
     if @project.bugs.update(bug_params)
       redirect_to project_bugs_path
-     else
+    else
       render 'edit', status: :unprocessable_entity
     end
   end
@@ -34,10 +34,9 @@ class BugsController < ApplicationController
   def create
     @bug = @project.bugs.new(bug_params)
     @bug.creator_id = current_user.id
-
     if @bug.save 
       redirect_to project_bugs_path
-     else
+    else
       render 'new' , status: :unprocessable_entity
     end
   end
@@ -47,10 +46,11 @@ class BugsController < ApplicationController
     redirect_to project_bugs_path, status: :see_other
   end
 
+  
   private
 
   def bug_params
-    params.require(:bug).permit(:title,:description,:deadline, :screenshot,:status,:type,:solver_id)
+    params.require(:bug).permit(:title, :description, :deadline, :screenshot, :status, :type, :solver_id)
   end
 
   def find_bug

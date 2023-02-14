@@ -34,10 +34,10 @@
          <td><%= u.name%></td>
          <td><%= u.id%></td>
 
-        <%p1=assigning.project %>
+        <% p1=assigning.project %>
          <td><%= p1.name%></td>
          <td><%= u.user_type%></td>
-         
+
         <% if current_user.user_type == 'manager' %>
            <td>
               <%= link_to "Remove Assigning",
