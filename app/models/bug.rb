@@ -15,14 +15,17 @@ class Bug < ApplicationRecord
   validate :status_validation
   
   mount_uploader :screenshot, ScreenshotUploader
-  
+
   def status_validation
     if type == 'bug'
-      valid_statuses = ['new', 'started', 'resolved']
-      errors.add(:status, "Invalid status for type bug") unless valid_statuses.include?(status)
+     valid_statuses = ['new', 'started', 'resolved']
+     errors.add(:status, "Invalid status for type bug") unless valid_statuses.include?(status)
     elsif type == 'feature'
-      valid_statuses = ['new', 'started', 'completed']
-      errors.add(:status, "Invalid status for type feature") unless valid_statuses.include?(status)
+     valid_statuses = ['new', 'started', 'completed']
+     errors.add(:status, "Invalid status for type feature") unless valid_statuses.include?(status)
     end
   end
 end
+
+
+
