@@ -1,6 +1,5 @@
 <%= form_for [@project,@user_project] do |f| %>
-  <div class="row">
-    <div class="col-md-4 offset-4">
+  <div class="row col-md-4 offset-4">
       <h3>Assign Project to Developers and Qa's</h3>
       <br>
       <%= f.label :developer %>
@@ -12,6 +11,5 @@
       <br>
       <%= f.submit "Assign", :class => 'btn btn-dark btn-sm' %>
     </div>
-  </div>
   <br>
 <% end %>
